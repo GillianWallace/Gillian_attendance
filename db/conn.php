@@ -10,10 +10,8 @@
 
     try{
         $pdo = new PDO($dsn, $user, $psss);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-       // echo 'Hello DataBase';
+        echo 'Hello DataBase';
     }catch(PDOException $e){
-        //echo "<h1 class='text-danger'>No Database was Found</h1>";
         throw new PDOException($e->getMessage());
     }
 ?>
