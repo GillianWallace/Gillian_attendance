@@ -9,6 +9,7 @@
         $dob = $_POST['DOB'];
         $email = $_POST['email'];
         $contact = $_POST['phone'];
+        $specialty = $_POST['specialty'];
         //Call function to insert and track if success or not
         $isSuccess = $crud->insert($fname, $lname, $dob, $email, $contact, $specialty);
 
