@@ -35,7 +35,6 @@
       <option value="1">Database Admin</option>
       <option value="2" >Software Developer</option>
       <option value="3">Web Administrator</option>
-      <option value="4">Network Admin</option>
       <option value="5">Other</option>
     </select>
     </div>
