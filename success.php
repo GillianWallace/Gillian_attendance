@@ -3,16 +3,17 @@
     require_once 'includes/header.php'; 
     require_once 'db/conn.php';
 
-    if(isset($_POST['submit'])){
+    if (isset($_POST['submit'])) {
         $fname = $_POST['firstname'];
         $lname = $_POST['lastname'];
         $dob = $_POST['DOB'];
         $email = $_POST['email'];
         $contact = $_POST['phone'];
         $specialty = $_POST['specialty'];
-        //Call function to insert and track if success or not
-        $isSuccess = $crud->insert($fname, $lname, $dob, $email, $contact, $specialty);
-
+        //call functionto insert and track is success or not
+        $isSuccess = $crud->insertAttendees($fname, $lname, $dob, $email, $contact, $specialty);
+        $specialtyName = $crud->getSpecialtyById($specialty);
+    
         if($isSuccess){
             echo '<h1 class="text-center text-success">You Have Been Registered!</h1>';
         }
