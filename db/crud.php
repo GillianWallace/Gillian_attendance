@@ -8,29 +8,55 @@
             $this->db = $conn;
         }
 
-        //function to insert a new record into the attendee database
-        public function insert($fname, $lname, $dob, $email, $contact, $specialty){
+       //function to insert a new record into the attendee database
+    public function insertAttendees($fname, $lname, $dob, $email, $contact, $specialty)
+    {
+        try {
+            //define all sql statemnet to be execution
+            $sql = "INSERT INTO attendee (firstname,lastname,dateofbirth,emailaddress,contactnumber,specialty_id) VALUES (:fname, :lname, :DOB, :email, :contact,:specialty)";
+            //prepare the sql statement for execution
+            $stmt = $this->db->prepare($sql);
+            //biind all placeholderto the actual values
+            $stmt->bindparam(':fname', $fname);
+            $stmt->bindparam(':lname', $lname);
+            $stmt->bindparam(':DOB', $dob);
+            $stmt->bindparam(':email', $email);
+            $stmt->bindparam(':contact', $contact);
+            $stmt->bindparam(':specialty', $specialty);
+            //Execute Statement
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+     
+        public function getSpecialtyById($id){
             try {
-                //define sql statement to be executed
-                $sql = "INSERT INTO attendee (firstname,lastname,dateofbirth,emailaddress,contactnumber,speciatlty_id) VALUES (:fname,:lname,:dateofbirth,:email,:contact,:specialty)";
-                //prepare the sql statement for execution
+                $sql = "SELECT * FROM specialties WHERE specialty_id = :id";
                 $stmt = $this->db->prepare($sql);
-                //bind all placeholders to the actual values
-                $stmt->bindparam(':fname',$fname);
-                $stmt->bindparam(':lname',$lname);
-                $stmt->bindparam(':dob',$dob);
-                $stmt->bindparam(':email',$email);
-                $stmt->bindparam(':contact',$contact);
-                $stmt->bindparam(':specialty',$specialty);
-                //execute statement
+                $stmt->bindparam(':id', $id);
                 $stmt->execute();
-                return true;
-                
-            } catch(PDOException $e) {
+                $result = $stmt->fetch();
+                return $result;
+            } catch (PDOException $e) {
                 echo $e->getMessage();
                 return false;
             }
         }
+
+        public function getAttendees()
+    {
+        try {
+            $sql = "SELECT * FROM `attendee` a inner join `specialties` s on a.specialty_id = s.specialty_id";
+            $result = $this->db->query($sql);
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
     }
         
 ?>
