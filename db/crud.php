@@ -23,8 +23,9 @@
                 $stmt->bindparam(':contact',$contact);
                 $stmt->bindparam(':specialty',$specialty);
                 //execute statement
-                $stmt->is_executable();
+                $stmt->execute();
                 return true;
+                
             } catch(PDOException $e) {
                 echo $e->getMessage();
                 return false;
