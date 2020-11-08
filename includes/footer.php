@@ -16,8 +16,8 @@
             $( "#DOB" ).datepicker( {
                changeMonth: true,
                changeYear: true,
-               yearRange: "-100:_0"
-               dateFormat: "yy=mm-dd"
+               yearRange: "-100:_0",
+               dateFormat: "yy-mm-dd"
              });
          } );
      </script>

@@ -32,6 +32,28 @@
         }
     }
      
+    public function editAttendee($id, $fname, $lname, $dob, $email, $contact, $specialty){
+        $sql = "UPDATE `attendee` SET `firstname`=:fname,`lastname`=:lname,`dateofbirth`=:DOB,`emailaddress`=:email,`contactnumber`=:contact,`specialty_id`=:specialty WHERE attendee_id=:id ";
+       try{
+        //prepare the sql statement for execution
+        $stmt = $this->db->prepare($sql);
+        //biind all placeholderto the actual values
+        $stmt->bindparam(':id', $id);
+        $stmt->bindparam(':fname', $fname);
+        $stmt->bindparam(':lname', $lname);
+        $stmt->bindparam(':DOB', $dob);
+        $stmt->bindparam(':email', $email);
+        $stmt->bindparam(':contact', $contact);
+        $stmt->bindparam(':specialty', $specialty);
+        //Execute Statement
+        $stmt->execute();
+        return true;
+       }catch (PDOException $e){
+           echo $e->getMessage();
+           return false;
+       }
+    }
+
         public function getSpecialtyByID($id){
             try {
                 $sql = "SELECT * FROM specialties WHERE specialty_id = :id";
@@ -66,6 +88,21 @@
         $result = $stmt->fetch();
         return $result;
     }
+
+    public function deleteAttendee($id){
+        try{
+            $sql = "delete from where attendee_id = :id";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindparam(':id', $id);
+        $result = $stmt->execute();
+        return true;
+        }catch (PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+
+    }
+
     public function getSpecialties(){
             $sql = "SELECT * FROM `specialties`";
             $result = $this->db->query($sql);

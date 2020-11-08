@@ -1,11 +1,12 @@
-<?php
-$title = "Index";
-require_once "includes/header.php";
-require_once 'db/conn.php';
+<?php 
+    $title = 'Index';
+    require_once 'includes/header.php'; 
+    require_once 'db/conn.php';
 
-//get all Specialties
-$result = $crud->getSpecialties();
-?>
+    $result = $crud->getSpecialties();
+    
+    ?>
+
 <h1 class="text-center">Registration for IT Conference</h1>
 <form method="post" action="success.php">
 
@@ -20,8 +21,8 @@ $result = $crud->getSpecialties();
 </div>
 
 <div class="form-group">
-    <label for="dob">Date of Birth</label>
-    <input type="text" class="form-control" id="dob" name="dob" >
+    <label for="DOB">Date of Birth</label>
+    <input type="text" class="form-control" id="DOB" name="DOB" >
 </div>
 
 <div class="form-group">
@@ -31,8 +32,6 @@ $result = $crud->getSpecialties();
             <option value="<?php echo $r['specialty_id']; ?>"><?php echo $r['name']; ?></option>
         <?php } ?>
     </select>
-
-   
 </div>
 
 <div class="form-group">
