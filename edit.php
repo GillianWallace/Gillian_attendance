@@ -7,7 +7,9 @@
 
 if(!isset($_GET['id']))
 {
-    echo 'error';
+    //echo 'error';
+    include 'includes/errormessage.php';
+    header("Location: viewrecords.php");
 }
 else{
     $id = $_GET['id'];
