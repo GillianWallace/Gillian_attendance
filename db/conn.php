@@ -1,15 +1,24 @@
 <?php
     //Development Connection
-    $host = '127.0.0.1';
-    $db = 'attendance_db';
-    $user = 'root';
-    $psss = '';
+    // $host = '127.0.0.1';
+    // $db = 'attendance_db';
+    // $user = 'root';
+    // $pass = '';
+    // $charset = 'utf8mb4';
+
+
+    //Remote Server
+    $host = 'db4free.net';
+    $db = 'attendee';
+    $user = 'gillian';
+    $pass = 'gillianaw';
     $charset = 'utf8mb4';
+
 
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 
     try{
-        $pdo = new PDO($dsn, $user, $psss);
+        $pdo = new PDO($dsn, $user, $pass);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     }catch(PDOException $e){
