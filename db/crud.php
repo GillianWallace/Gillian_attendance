@@ -13,7 +13,7 @@
     {
         try {
             //define all sql statemnet to be execution
-            $sql = "INSERT INTO attendee (firstname,lastname,dateofbirth,emailaddress,contactnumber,specialty_id) VALUES (:fname, :lname, :DOB, :email, :contact,:specialty)";
+            $sql = "INSERT INTO attendee (firstname,lastname,dateofbirth,emailaddress,contactnumber,specialty_id,avatar_path) VALUES (:fname, :lname, :DOB, :email, :contact,:specialty,:avatar_path)";
             //prepare the sql statement for execution
             $stmt = $this->db->prepare($sql);
             //biind all placeholderto the actual values
@@ -23,6 +23,7 @@
             $stmt->bindparam(':email', $email);
             $stmt->bindparam(':contact', $contact);
             $stmt->bindparam(':specialty', $specialty);
+            $stmt->bindparam(':avatar_path', $avatar_path);
             //Execute Statement
             $stmt->execute();
             return true;

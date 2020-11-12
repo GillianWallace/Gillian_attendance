@@ -1,3 +1,7 @@
+<?php 
+//This include session file. this ffile contain code that starts/returns a session
+//By having it in the header file. it will be included on every page, allowing sesssion capability to be used on every page a cross the website
+include_once 'includes/session.php'?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -24,6 +28,21 @@
       <a class="nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a>
       <a class="nav-link" href="viewrecords.php">View Attendees</a>
       
+                    <?php 
+                            if(!isset($_SESSION['userid'])){
+                        ?>                      
+                            <li class="nav-item">
+                                <a class="nav-link  ml-auto" href="login.php">Login</a>
+                            </li>  
+                        <?php }else {?>  
+                           
+                            <li>
+                            <spam">Hello <?php echo $_SESSION['username'] ?>!</spam>
+                                <a class="nav-link" href="logout.php" >Logout</a>
+                            </li>
+                        <?php }?>                    
+                    </ul>
+                  
     </div>
   </div>
 </nav>

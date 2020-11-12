@@ -1,6 +1,7 @@
 <?php 
     $title = 'Edit Record';
     require_once 'includes/header.php'; 
+    require_once 'includes/auth_check.php';
     require_once 'db/conn.php';
 
     $result = $crud->getSpecialties();
@@ -64,6 +65,11 @@ else{
                 <label for="phone">Contact</label>
                 <input type="text" class="form-control" value="<?php echo $attendee['contactnumber']?>" id="phone" name="phone" aria-describedby="phoneHelp">
                 <small id="phoneHelp" class="form-text text-muted">We'll never share your Contact Number with anyone else.</small>
+            </div>
+            <div class="custom-file">
+                <input type="file" accept="image/*" class="custom-file-input" value="<?php echo $attendee['avatar_path'] ?> id="avatar" name="avatar" >
+                <label class="custom-file-label" for="avatar"  >Choose file</label>
+                <small id="avatar" class="form-text text-danger">File Upload is Optional.</small>         
             </div>
 
 
